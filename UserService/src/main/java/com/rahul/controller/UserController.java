@@ -26,7 +26,7 @@ public class UserController {
 	public String getPortNo() {
 		
 		
-		return "Hello User service working on port : "+ env.getProperty("local.server.port");
+		return "Hello User service working on port number : "+ env.getProperty("local.server.port");
 	}
 	
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
