@@ -1,6 +1,7 @@
 package com.rahul.dto;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,6 +13,7 @@ import lombok.Setter;
 public class CreateUserModel {
 
 	@NotNull(message = "FirstName should not be null")
+	@NotEmpty
 	@Size(min = 2,message = "Atleast two character in firstName")
 	private String firstName;
 	
@@ -27,5 +29,7 @@ public class CreateUserModel {
 	@Size(min = 2,message = "Atleast two character in firstName")
 	private String password;
 	
+	
+	private String userId;
 	
 }
