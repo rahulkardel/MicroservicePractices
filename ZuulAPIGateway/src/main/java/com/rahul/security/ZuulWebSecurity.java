@@ -24,9 +24,13 @@ public class ZuulWebSecurity extends WebSecurityConfigurerAdapter {
 		http.headers().frameOptions().disable();
 		
 		http.authorizeRequests()
-		.antMatchers(env.getProperty("api.h2.console.path")).permitAll()
-		.antMatchers(HttpMethod.POST,env.getProperty("zuul.prefix")+env.getProperty("api.registration.url.path")).permitAll()
-		.antMatchers(HttpMethod.POST,env.getProperty("zuul.prefix")+env.getProperty("api.login.url.path")).permitAll()
+		.antMatchers(env.getProperty("api.zuul.actuator.url.path")).permitAll()
+		.antMatchers(env.getProperty("zuul.prefix")+env.getProperty("api.users.actuator.url.path")).permitAll()
+		
+		.antMatchers(env.getProperty("zuul.prefix")+env.getProperty("api.h2.console.path")).permitAll()
+		
+		.antMatchers(HttpMethod.POST,"/"+env.getProperty("zuul.prefix")+env.getProperty("api.registration.url.path")).permitAll()
+		.antMatchers(HttpMethod.POST,"/"+env.getProperty("zuul.prefix")+env.getProperty("api.login.url.path")).permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.addFilter(new AuthorizationFilter(authenticationManager(), env));

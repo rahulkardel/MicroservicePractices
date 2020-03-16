@@ -31,6 +31,17 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	
+	@GetMapping(value="/port", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String getPort() {
+		
+		
+		return " Hello User service working on port : "+ env.getProperty("local.server.port")
+		+ "  token time : "+ env.getProperty("token.expiration.time")
+		+ " Token value is : " + env.getProperty("token.secret");
+		
+		//return userService.getUser();
+	}
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<CreateUserModel> getUser() {
 		
